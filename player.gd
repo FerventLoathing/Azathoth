@@ -3,12 +3,16 @@ extends CharacterBody2D
 const SPEED = 300.0
 
 @export var tile_map : TileMap
+@export var label_win : Label
+@export var tiles_to_win : int = 2750
+#@export var audio : AudioStream
 
 var ground_layer = 0
 var source_id = 0
 var atlas_coord = Vector2i (0, 0)
 
 var tiles_painted : int = 0
+var has_won : bool = false
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -25,6 +29,17 @@ func _physics_process(delta: float) -> void:
 	for n in 5:
 			for m in 5:
 				place_tile(n-2, m-2)
+	
+	if tiles_painted >= tiles_to_win && !has_won:
+		label_win.visible = true
+		has_won = true
+		
+		#$AudioStreamPlayer2D.stream = audio
+		#$AudioStreamPlayer2D.play()
+		
+		for n in 100:
+			for m in 100:
+				place_tile(n-50, m-50)
 
 #func _input(event: InputEvent) -> void:
 	#if Input.is_action_just_pressed("interact"):

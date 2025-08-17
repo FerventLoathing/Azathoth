@@ -46,12 +46,13 @@ tile_set = SubResource("TileSet_fc0e3")
 format = 2
 layer_0/name = "MaskLayer"
 
-[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map")]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("tile_map", "label_win")]
 z_index = 5
 position = Vector2(549, 316)
 motion_mode = 1
 script = ExtResource("4_7jktm")
 tile_map = NodePath("../TileMap")
+label_win = NodePath("../LabelWin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_7jktm")
@@ -92,3 +93,25 @@ rotation = -1.57081
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaries/BoundaryEast"]
 shape = SubResource("WorldBoundaryShape2D_7jktm")
+
+[node name="LabelInstruction" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 47.0
+offset_right = 1137.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 32
+text = "You are Kracko. You travel into Azathoth's childhood dream to turn his 
+hellscape nightmare dream-world into a utopian dreamworld."
+
+[node name="LabelWin" type="Label" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = 155.0
+offset_top = 253.0
+offset_right = 956.0
+offset_bottom = 386.0
+theme_override_font_sizes/font_size = 47
+text = "YOU WIN
+you turned nightmare into utopia :)"
+horizontal_alignment = 1
+vertical_alignment = 1
